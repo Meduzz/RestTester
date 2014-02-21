@@ -1,0 +1,49 @@
+extends layout
+
+block content
+	h1.col-md-8 Teeeeeeeest!
+	form.col-md-8(role="form")
+		.form-group.row
+			.col-md-2
+				label(for="method") &nbsp;
+				select#method.form-control(name="method")
+					option(value="GET") GET
+					option(value="POST") POST
+					option(value="PUT") PUT
+					option(value="DELETE") DELETE
+					option(value="HEAD") HEAD
+			.col-md-10
+				label(for="url") URL:
+				input#url.form-control(name="url", type="text")
+		#headers
+			.form-group.row
+				.col-md-6
+					label(for="key[]") Header:
+					input.form-control(name="key[]", type="text")
+				.col-md-6
+					label(for="val[]") Value:
+					input.form-control(name="val[]", type="text")
+				.col-md-offset-12
+					label(for="add") &nbsp;
+					a#add.btn.btn-default(href="#") Add
+		.form-group
+			label(for="body") Body:
+			textarea#body.form-control(name="body", cols="80", rows="5")
+		.form-group
+			button#send.btn.btn-default(type="button") Send
+			button#clear.btn.btn-warning(type="button") Clear log
+
+	.result.col-md-8
+
+	script#headerTmpl(type="text/x-jquery-tmpl")
+		.form-group.row
+			.col-md-6
+				label(for="key[]") Header:
+				input.form-control(name="key[]", type="text")
+			.col-md-6
+				label(for="val[]") Value:
+				input.form-control(name="val[]", type="text")
+			.col-md-offset-12
+				label &nbsp;
+				a.remove.btn.btn-warning(href="#") Remove
+		
