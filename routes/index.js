@@ -1,4 +1,5 @@
 var hero = require("superagent");
+var URL = require("url");
 
 exports.index = function(req, res){
   res.render('index', {title: 'Express'});
@@ -7,11 +8,12 @@ exports.index = function(req, res){
 exports.ajax = function(req, res) {
 	var method = req.body.method;
 	var body = req.body.body;
-	var url = req.body.url;
+	var url = URL.parse(req.body.url);
 	var headers = buildHeaders(req.body.key, req.body.val);
 
 	var request = hero[method.toLowerCase()](url);
-	
+  headers.Host = url.host;
+  
 	if (['POST', 'PUT'].indexOf(method) > -1) {
 		request.send(body);
 	}
