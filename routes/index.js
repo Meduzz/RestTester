@@ -10,8 +10,9 @@ exports.ajax = function(req, res) {
 	var body = req.body.body;
 	var url = URL.parse(req.body.url);
 	var headers = buildHeaders(req.body.key, req.body.val);
+  var mapping = {"GET":"get", "POST":"post","PUT":"put","HEAD":"head","DELETE":"del"};
 
-	var request = hero[method.toLowerCase()](url);
+	var request = hero[mapping[method]](url);
   headers.Host = url.host;
   
 	if (['POST', 'PUT'].indexOf(method) > -1) {
